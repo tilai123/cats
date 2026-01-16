@@ -18,12 +18,10 @@
     text-align: center;
   }
 
-  header h1 { margin: 0; }
-
   .controls {
     display: flex;
-    justify-content: space-between;
     gap: 10px;
+    justify-content: space-between;
     padding: 15px;
     max-width: 1000px;
     margin: auto;
@@ -84,8 +82,17 @@
   .modal-content {
     background: white;
     padding: 20px;
-    border-radius: 12px;
+    border-radius: 14px;
     max-width: 500px;
+    width: 90%;
+  }
+
+  .modal-content img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-bottom: 10px;
   }
 
   footer {
@@ -115,6 +122,7 @@
 
 <div class="modal" id="modal">
   <div class="modal-content">
+    <img id="modalImg">
     <h2 id="modalTitle"></h2>
     <p id="modalText"></p>
     <button onclick="closeModal()">OK</button>
@@ -127,90 +135,15 @@
 const data = [
   {
     img:"https://upload.wikimedia.org/wikipedia/commons/3/3a/Norwegian_Forest_Cat.jpg",
-    sv:{name:"Norsk skogskatt",desc:"Stor, långhårig och tålig.",more:"Vänlig, självständig, kräver regelbunden pälsvård."},
-    en:{name:"Norwegian Forest Cat",desc:"Large and fluffy.",more:"Friendly, independent, needs grooming."},
-    es:{name:"Gato del Bosque Noruego",desc:"Grande y peludo.",more:"Amigable e independiente."}
+    sv:{name:"Norsk skogskatt",desc:"Stor och tålig.",more:"Vänlig, självständig och långhårig. Kräver regelbunden pälsvård."},
+    en:{name:"Norwegian Forest Cat",desc:"Large and hardy.",more:"Friendly, independent and fluffy."},
+    es:{name:"Gato del Bosque Noruego",desc:"Grande y fuerte.",more:"Amigable e independiente."}
   },
   {
     img:"https://upload.wikimedia.org/wikipedia/commons/5/5a/Maine_Coon_cat_by_Tomitheos.JPG",
-    sv:{name:"Maine Coon",desc:"Vänlig jätte.",more:"Social, intelligent, passar familjer."},
+    sv:{name:"Maine Coon",desc:"Vänlig jätte.",more:"Social, intelligent och familjevänlig."},
     en:{name:"Maine Coon",desc:"Gentle giant.",more:"Social and intelligent."},
     es:{name:"Maine Coon",desc:"Gigante amable.",more:"Muy sociable."}
   },
   {
-    img:"https://upload.wikimedia.org/wikipedia/commons/6/64/Ragdoll_blue_point.jpg",
-    sv:{name:"Ragdoll",desc:"Lugn och tillgiven.",more:"Slappnar av när man lyfter den."},
-    en:{name:"Ragdoll",desc:"Calm and loving.",more:"Very relaxed temperament."},
-    es:{name:"Ragdoll",desc:"Tranquilo y cariñoso.",more:"Muy dócil."}
-  },
-  {
-    img:"https://upload.wikimedia.org/wikipedia/commons/1/12/Birman_cat.jpg",
-    sv:{name:"Birma",desc:"Elegant och social.",more:"Blå ögon, vita tassar."},
-    en:{name:"Birman",desc:"Elegant and social.",more:"Blue eyes, white paws."},
-    es:{name:"Birmano",desc:"Elegante y social.",more:"Ojos azules."}
-  },
-  {
-    img:"https://upload.wikimedia.org/wikipedia/commons/b/b7/Bengal_Cat_%28Felis_catus%29.jpg",
-    sv:{name:"Bengal",desc:"Aktiv och vildlik.",more:"Mycket energisk."},
-    en:{name:"Bengal",desc:"Active and wild-looking.",more:"Very energetic."},
-    es:{name:"Bengalí",desc:"Activo y salvaje.",more:"Muy energético."}
-  },
-  {
-    img:"https://upload.wikimedia.org/wikipedia/commons/0/0b/Burmese_cat.jpg",
-    sv:{name:"Burma",desc:"Människokär.",more:"Lekfull och sällskaplig."},
-    en:{name:"Burmese",desc:"People-loving.",more:"Playful."},
-    es:{name:"Birmano",desc:"Cariñoso.",more:"Muy sociable."}
-  },
-  {
-    img:"https://upload.wikimedia.org/wikipedia/commons/5/5b/Cornish_Rex.jpg",
-    sv:{name:"Cornish Rex",desc:"Lockig päls.",more:"Extremt lekfull."},
-    en:{name:"Cornish Rex",desc:"Curly coat.",more:"Very playful."},
-    es:{name:"Cornish Rex",desc:"Pelaje rizado.",more:"Muy juguetón."}
-  },
-  {
-    img:"https://upload.wikimedia.org/wikipedia/commons/2/25/Siamese_cat.jpg",
-    sv:{name:"Siames",desc:"Pratsam och smart.",more:"Mycket social."},
-    en:{name:"Siamese",desc:"Vocal and smart.",more:"Very social."},
-    es:{name:"Siamés",desc:"Muy comunicativo.",more:"Muy sociable."}
-  }
-];
-
-const cards = document.getElementById("cards");
-const search = document.getElementById("search");
-const language = document.getElementById("language");
-let lang = "sv";
-
-function render() {
-  cards.innerHTML = "";
-  data.filter(c => c[lang].name.toLowerCase().includes(search.value.toLowerCase()))
-    .forEach(cat => {
-      const div = document.createElement("div");
-      div.className = "card";
-      div.innerHTML = `
-        <img src="${cat.img}">
-        <div class="card-content">
-          <h3>${cat[lang].name}</h3>
-          <p>${cat[lang].desc}</p>
-          <button onclick="openModal('${cat[lang].name}','${cat[lang].more}')">
-            ${lang==="sv"?"Läs mer":lang==="en"?"Read more":"Leer más"}
-          </button>
-        </div>`;
-      cards.appendChild(div);
-    });
-}
-
-function openModal(title,text){
-  document.getElementById("modalTitle").textContent = title;
-  document.getElementById("modalText").textContent = text;
-  document.getElementById("modal").style.display="flex";
-}
-function closeModal(){document.getElementById("modal").style.display="none";}
-
-search.oninput = render;
-language.onchange = e => { lang = e.target.value; render(); };
-
-render();
-</script>
-
-</body>
-</html>
+    img:"https://upload.w
